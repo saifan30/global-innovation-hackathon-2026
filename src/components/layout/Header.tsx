@@ -8,12 +8,14 @@ import {
   Award,
   ChevronRight,
   TrendingUp,
-  BookOpen
+  BookOpen,
+  Sun,
+  Moon
 } from "lucide-react";
 import { ActiveTab } from "../../types/index.ts";
 
 export const Header: React.FC = () => {
-  const { activeTab, setActiveTab, profile, selectedRole, gapAnalysis } = useApp();
+  const { activeTab, setActiveTab, profile, selectedRole, gapAnalysis, theme, toggleTheme } = useApp();
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
@@ -99,8 +101,29 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          {/* User Profile & Dashboard Navigation Controls */}
+          {/* User Profile, Theme Toggle & Dashboard Navigation Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
+            <button
+              id="theme-toggle-btn"
+              type="button"
+              onClick={toggleTheme}
+              className="p-1.5 sm:px-2.5 sm:py-1.5 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-2xs"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span className="hidden sm:inline">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+                  <span className="hidden sm:inline">Dark</span>
+                </>
+              )}
+            </button>
+
             <button
               id="nav-dashboard-btn"
               onClick={() => setActiveTab("dashboard")}

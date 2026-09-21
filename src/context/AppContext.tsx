@@ -32,6 +32,8 @@ interface AppContextType {
   aiInsights: AiStrategicInsights | null;
   isAiLoading: boolean;
   notifications: AppNotification[];
+  theme: "light" | "dark";
+  toggleTheme: () => void;
   // Actions
   selectRole: (roleId: string) => Promise<void>;
   updateProfile: (updates: Partial<UserProfile>) => Promise<void>;
@@ -65,6 +67,41 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [aiInsights, setAiInsights] = useState<AiStrategicInsights | null>(null);
   const [isAiLoading, setIsAiLoading] = useState<boolean>(false);
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
+
+  // Dark / Light Theme State with LocalStorage Persistence
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("skillengine_theme");
+        if (saved === "dark" || saved === "light") return saved;
+        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+      } catch (e) {
+        // Fallback for restricted storage environments
+      }
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      try {
+        localStorage.setItem("skillengine_theme", theme);
+      } catch (e) {
+        // Fallback for restricted environments
+      }
+    }
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }, []);
 
   const addNotification = useCallback((type: AppNotification["type"], message: string) => {
     const newNotif: AppNotification = {
@@ -330,6 +367,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         aiInsights,
         isAiLoading,
         notifications,
+        theme,
+        toggleTheme,
         selectRole,
         updateProfile,
         loadPreset,
