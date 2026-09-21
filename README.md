@@ -298,7 +298,7 @@ The application underwent a comprehensive 20-point quality assurance validation:
 https://course-skill-recommendation-engine.ai.studio
 
 ## 28. Video Demo
-[Video Demo URL — to be added]
+https://youtu.be/cb8NcnQKUnw?si=qv6kcCMYeOaq0J1w
 
 ## 29. Project Repository
 https://github.com/saifan30/global-innovation-hackathon-2026
