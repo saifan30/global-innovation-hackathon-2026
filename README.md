@@ -301,7 +301,7 @@ https://course-skill-recommendation-engine.ai.studio
 [Video Demo URL — to be added]
 
 ## 29. Project Repository
-[Project Repository URL — to be added]
+https://github.com/saifan30/global-innovation-hackathon-2026
 
 ## 30. License
 Apache-2.0 License.
