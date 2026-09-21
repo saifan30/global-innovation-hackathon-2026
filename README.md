@@ -295,7 +295,7 @@ The application underwent a comprehensive 20-point quality assurance validation:
 * **Global Peer Study Circles:** Connecting borderless learners working on the same roadmap phase for collaborative capstone development.
 
 ## 27. Live Demo
-[Live Demo URL — to be added]
+https://course-skill-recommendation-engine.ai.studio
 
 ## 28. Video Demo
 [Video Demo URL — to be added]
